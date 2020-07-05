@@ -1,0 +1,35 @@
+<mat-accordion *ngFor="let post of posts; let i = index;" borderColor="border-secondary" style="margin:1px auto;" multi>
+    <mat-expansion-panel (opened)="addOpenPanel(i)" (closed)="removeOpenPanel(i)">
+        <mat-expansion-panel-header collapsedHeight="15vh">
+            <mat-panel-title>
+                <h3 class="mt-0 font-weight-bold">{{post.title}}</h3>
+            </mat-panel-title>
+            <mat-panel-description  *ngIf="openedPanel.has(i) == false">
+                <div class="media">
+                    <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image"> -->
+                    <div class="media-body">
+                        summary 
+
+                        summary
+                        summary
+                    </div>
+                </div>
+                
+            </mat-panel-description>
+
+           
+        </mat-expansion-panel-header>
+
+        <div class="media">
+        <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image"> -->
+        <div class="media-body">
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
+            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+            congue felis in faucibus.
+        </div>
+        </div>
+       
+    </mat-expansion-panel>
+
+    
+</mat-accordion>
