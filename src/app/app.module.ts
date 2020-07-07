@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common'
 // For MDB Angular Free
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavbarModule, WavesModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md';
@@ -13,13 +14,15 @@ import { HomeComponent } from './home/home.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FeedPostsComponent } from './feed-posts/feed-posts.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FeedPostsComponent
+    FeedPostsComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     HttpClientModule,
     MatExpansionModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

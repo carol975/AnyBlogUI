@@ -28,4 +28,12 @@ export class PostService {
       catchError(this.handleError)
     )
   }
+
+  get_post(postId: string){
+    console.log(`${environment.post_api}/${postId}`);
+    return this.http.get(`${environment.post_api}/${postId}`).pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
 }

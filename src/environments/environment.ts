@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  home_api: 'http://localhost:5000/home'
+  home_api: 'http://localhost:5000/home',
+  post_api: 'http://localhost:5000/post'
 };
 
 /*

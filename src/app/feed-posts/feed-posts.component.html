@@ -4,32 +4,30 @@
             <mat-panel-title>
                 <h3 class="mt-0 font-weight-bold">{{post.title}}</h3>
             </mat-panel-title>
-            <mat-panel-description  *ngIf="openedPanel.has(i) == false">
+            <mat-panel-description *ngIf="openedPanel.has(i) == false">
                 <div class="media">
                     <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image"> -->
-                    <div class="media-body">
-                        summary 
-
-                        summary
-                        summary
+                    <div class="media-body" *ngIf="post.summary">
+                        {{(post.summary.length > 100) ? (post.summary | slice:0:100) + '...' : post.summary}}
                     </div>
                 </div>
-                
+
             </mat-panel-description>
 
-           
+
         </mat-expansion-panel-header>
 
         <div class="media">
-        <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image"> -->
-        <div class="media-body">
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-            congue felis in faucibus.
+            <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg"
+                alt="Generic placeholder image"> -->
+            <div class="media-body">
+                <div>By: @<a href="#">{{post.author_username}}</a> {{toLocaleDate(post.date_posted)}}</div>
+                <br>
+                {{post.content}}
+            </div>
         </div>
-        </div>
-       
+
     </mat-expansion-panel>
 
-    
+
 </mat-accordion>
