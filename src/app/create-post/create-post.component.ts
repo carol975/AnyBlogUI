@@ -14,10 +14,22 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
   constructor() { }
   ngAfterViewInit(): void {
     const edit = this.editable.nativeElement;
-    this.editor = new MediumEditor(edit);
-    console.log(this.editor.getContent());
+     this.editor = new MediumEditor(edit, {
+       toolbar: {
+         buttons: ['bold', 'italic', 'quote', 'anchor', 'image','removeFormat']
+       },
+       autoLink:true,
+       extensionse: {
+         imageDragging: false
+       }
+     } );  
   }
 
+
+  save_post(){
+    console.log(this.editor.getContent())
+  }
+  
   ngOnInit(): void {
   }
 
