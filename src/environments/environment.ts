@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  home_api: 'http://localhost:5000/home',
-  post_api: 'http://localhost:5000/post',
-  login_api: 'http://localhost:5000/login',
+  home_api: '/api/home',
+  post_api: '/api/post',
+  login_api: '/api/login',
 };
 
 /*

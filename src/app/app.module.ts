@@ -17,6 +17,7 @@ import { FeedPostsComponent } from './feed-posts/feed-posts.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { LoginComponent } from './login/login.component';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     MatExpansionModule,
     FormsModule,
+    FlashMessagesModule.forRoot(),
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
