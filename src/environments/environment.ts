@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   home_api: 'http://localhost:5000/home',
-  post_api: 'http://localhost:5000/post'
+  post_api: 'http://localhost:5000/post',
+  login_api: 'http://localhost:5000/login',
 };
 
 /*
