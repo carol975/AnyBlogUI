@@ -7,6 +7,8 @@ export const environment = {
   home_api: '/api/home',
   post_api: '/api/post',
   login_api: '/api/login',
+  logout_api: '/api/logout',
+  isloggedin_api:'/api/isloggedin',
 };
 
 /*

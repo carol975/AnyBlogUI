@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,20 +14,26 @@ export class LoginComponent implements OnInit {
     "password": "",
     "remember": false
   }
+
+  returnUrl: string;
   constructor(
     private loginService: AuthenticationService,
-    private flashMessagesService: FlashMessagesService
+    private flashMessagesService: FlashMessagesService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { 
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
+   }
   onSubmit() {
     this.loginService.login(this.loginInfo.email, this.loginInfo.password, String(this.loginInfo.remember)).subscribe(res => {
-      console.log(res)
+      this.router.navigateByUrl(this.returnUrl) || '/';
+      
     },
     error => {
-      console.log("errrrrr",error)
       this.flashMessagesService.show('Wrong Email or Password!', { cssClass: 'alert-danger mt-2', timeout: 2500 });
-
+      
     })
   }
 

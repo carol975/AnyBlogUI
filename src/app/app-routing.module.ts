@@ -3,13 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { LoginComponent } from './login/login.component';
-
+import { AuthGuardService as AuthGuard } from './services/auth-guard.service'
 
 const routes: Routes = [
-  {path:'home', component:HomeComponent},
+  {path:'', component:HomeComponent},
   {path:'login', component:LoginComponent},
-  {path:'new', component: CreatePostComponent},
-  {path: '**', redirectTo: 'home'}
+  {path:'new', component: CreatePostComponent, canActivate: [AuthGuard]},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
