@@ -24,11 +24,10 @@ export class AuthGuardService implements CanActivate {
       map(res=>{
         if(res.body['isloggedin']){
           // this.auth.isLoggedIn = true;
-          console.log(this.auth.isLoggedIn);
           return true;
         } else {
           // this.auth.isLoggedIn = false;
-          console.log(this.auth.isLoggedIn);
+          // console.log(this.auth.isLoggedIn);
           return false;
         }
       }),

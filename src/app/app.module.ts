@@ -18,6 +18,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { LoginComponent } from './login/login.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     HomeComponent,
     FeedPostsComponent,
     CreatePostComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

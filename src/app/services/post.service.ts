@@ -36,4 +36,9 @@ export class PostService {
       catchError(this.handleError)
     )
   }
+
+  publish_post(title:string, content: string){
+    return this.http.post(`${environment.post_api}/new`, {'title': title, 'content':content},{observe: 'response', withCredentials:true});
+
+  }
 }

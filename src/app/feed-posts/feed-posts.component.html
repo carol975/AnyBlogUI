@@ -28,7 +28,7 @@
             <div class="media-body">
                 <div>By: @<a href="#">{{post.author_username}}</a> {{toLocaleDate(post.date_posted)}}</div>
                 <br>
-                {{post.content}}
+                <div [innerHTML]="post.content"></div>
             </div>
         </div>
 

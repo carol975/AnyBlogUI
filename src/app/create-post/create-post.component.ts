@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
 import MediumEditor from 'medium-editor';
 import { NavbarEventService } from '../services/navbar-event.service';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-create-post',
@@ -13,7 +14,8 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
 
   editor;
   constructor(
-    private navbarEventService: NavbarEventService
+    private navbarEventService: NavbarEventService,
+    private postService: PostService
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,9 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
 
   publish() {
     console.log(this.editor.getContent());
+    this.postService.publish_post("new", String(this.editor.getContent())).subscribe(error=>{
+      console.log(error);
+    })
   }
 
   save_post() {
