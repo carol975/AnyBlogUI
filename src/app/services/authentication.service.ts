@@ -1,18 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  isLoggedIn:boolean = false;
+  observableIsLoggedin = new BehaviorSubject<boolean>(false)
+  isLoggedIn = false;
   
+  setIsLoggedIn(isLoggedIn:boolean){
+    this.observableIsLoggedin.next(isLoggedIn);
+    this.isLoggedIn = isLoggedIn;
+  }
+
+  getIsLoggedIn(){
+    return this.isLoggedIn;
+  }
   constructor(
     private http: HttpClient
-  ) {}
+  ) {
+    this.checkIsLoggedIn().subscribe(res=>{
+      this.setIsLoggedIn(res.body['isloggedin']);
+    })
+  }
 
   checkIsLoggedIn(){
     console.log(this.isLoggedIn);

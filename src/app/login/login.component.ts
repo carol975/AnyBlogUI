@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
    }
   onSubmit() {
     this.loginService.login(this.loginInfo.email, this.loginInfo.password, String(this.loginInfo.remember)).subscribe(res => {
+      this.loginService.setIsLoggedIn(true);
       this.router.navigateByUrl(this.returnUrl) || '/';
       
     },

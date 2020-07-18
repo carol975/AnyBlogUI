@@ -19,6 +19,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { LoginComponent } from './login/login.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { LogoutComponent } from './logout/logout.component';
+import { AuthenticationService } from './services/authentication.service';
 
 
 @NgModule({
@@ -46,7 +47,7 @@ import { LogoutComponent } from './logout/logout.component';
     FormsModule,
     FlashMessagesModule.forRoot(),
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,10 +10,12 @@ import { AuthenticationService } from './services/authentication.service';
 export class AppComponent {
   title = 'anyblog-ui';
   currentRoute = ''
+  isLoggedin=false;
   constructor(private router: Router,
     private navbarEventService: NavbarEventService,
     private authService: AuthenticationService){
     this.subscribeRouteChange();
+    this.subscribeToLoginStatusChange();
     }
   subscribeRouteChange(){
     this.router.events.subscribe( (e) => {
@@ -22,12 +24,23 @@ export class AppComponent {
       }
     });
   }
+
+  subscribeToLoginStatusChange(){
+    this.authService.observableIsLoggedin.subscribe((loginStatus: boolean) => {
+      this.isLoggedin = loginStatus;
+    })
+  }
   publish(){
     this.navbarEventService.publish_evt.next();
   }
   logout(){
     this.authService.logout().subscribe(_=>{
-      this.router.navigate['logout'];
+      console.log(_);
+      this.authService.setIsLoggedIn(false);
+      this.router.navigate(['logout']);
+    },
+    error=>{
+      console.log(error)
     })
   }
 }
