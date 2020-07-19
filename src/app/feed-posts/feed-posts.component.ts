@@ -11,6 +11,7 @@ export interface Post {
   summary: string,
   author_user_id?: string,
   post_id: string,
+  is_curr_author:boolean;
 }
 
 export interface PostList {
@@ -44,6 +45,7 @@ export class FeedPostsComponent implements OnInit {
     //load content only once
     if(this.posts[index].content == null){
       this._postService.get_post(this.posts[index].post_id).subscribe((fullPost: Post)=>{
+        console.log(fullPost);
         this.posts[index].content = fullPost.content;
         this.posts[index].date_posted = fullPost.date_posted;
         this.posts[index].author_username = fullPost.author_username;

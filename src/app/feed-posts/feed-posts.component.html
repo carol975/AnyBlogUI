@@ -1,12 +1,15 @@
 <mat-accordion *ngFor="let post of posts; let i = index;" borderColor="border-secondary" style="margin:1px auto;" multi>
+    
     <mat-expansion-panel (opened)="addOpenPanel(i)" (closed)="removeOpenPanel(i)">
         <mat-expansion-panel-header collapsedHeight="20vh">
             <mat-panel-title>
                 <div>
 
-                    <h3 class="mt-0 font-weight-bold">{{post.title}}</h3>
+                    <div>
+                        <h3 class="mt-0 font-weight-bold"><button type="button" class="btn btn-outline-primary btn-sm mr-1">edit</button>{{post.title}}</h3>
+                    </div>
                     <!-- https://stackoverflow.com/questions/536814/insert-ellipsis-into-html-tag-if-content-too-wide -->
-                    <h4 class="text-muted" *ngIf="openedPanel.has(i) == false">{{(post.summary.length > 100) ? (post.summary | slice:0:100) + '...' : post.summary}}</h4>
+                    <h4 class="text-muted" *ngIf="openedPanel.has(i) == false">{{(post.summary.length > 150) ? (post.summary | slice:0:150) + '...' : post.summary}}</h4>
                 </div>
             </mat-panel-title>
             <!-- <mat-panel-description *ngIf="openedPanel.has(i) == false">
@@ -15,7 +18,7 @@
                     <div class="media-body" *ngIf="post.summary">
                         
                     </div>
-                </div>
+                </div> 
 
             </mat-panel-description> -->
 

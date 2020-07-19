@@ -34,6 +34,8 @@
               "node_modules/animate.css/animate.css",
               "node_modules/medium-editor/dist/css/medium-editor.min.css",
               "node_modules/medium-editor/dist/css/themes/default.css",
+              "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+              "node_modules/froala-editor/css/froala_style.min.css",
               "src/styles.css"
             ],
             "scripts": [

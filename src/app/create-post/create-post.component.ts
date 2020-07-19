@@ -8,11 +8,12 @@ import { PostService } from '../services/post.service';
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.css']
 })
-export class CreatePostComponent implements OnInit, AfterViewInit {
+export class CreatePostComponent implements OnInit {
 
   @ViewChild('editable') editable: ElementRef;
 
-  editor;
+  title = "";
+  content = "New Post";
   constructor(
     private navbarEventService: NavbarEventService,
     private postService: PostService
@@ -23,33 +24,16 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
       this.publish();
     })
   }
-  ngAfterViewInit(): void {
-    this.initEditor();
-
-  }
-
-  initEditor() {
-    const edit = this.editable.nativeElement;
-    this.editor = new MediumEditor(edit, {
-      toolbar: {
-        buttons: ['bold', 'italic', 'quote', 'anchor', 'image', 'removeFormat']
-      },
-      autoLink: true,
-      extensionse: {
-        imageDragging: false
-      }
-    });
-  }
 
   publish() {
-    console.log(this.editor.getContent());
-    this.postService.publish_post("new", String(this.editor.getContent())).subscribe(error=>{
+    console.log(this.content);
+    this.postService.publish_post(this.title, String(this.content)).subscribe(error=>{
       console.log(error);
     })
   }
 
-  save_post() {
-    console.log(this.editor.getContent())
-  }
+  // save_post() {
+  //   console.log(this.editor.getContent())
+  // }
 
 }

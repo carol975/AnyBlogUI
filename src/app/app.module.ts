@@ -20,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthenticationService } from './services/authentication.service';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { UpdatePostComponent } from './update-post/update-post.component';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { AuthenticationService } from './services/authentication.service';
     FeedPostsComponent,
     CreatePostComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    UpdatePostComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,8 @@ import { AuthenticationService } from './services/authentication.service';
     MatExpansionModule,
     FormsModule,
     FlashMessagesModule.forRoot(),
+    FroalaEditorModule.forRoot(), 
+    FroalaViewModule.forRoot(),
   ],
   providers: [DatePipe, AuthenticationService],
   bootstrap: [AppComponent]
