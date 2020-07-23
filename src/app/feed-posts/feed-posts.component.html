@@ -1,30 +1,18 @@
-<mat-accordion *ngFor="let post of posts; let i = index;" borderColor="border-secondary" style="margin:1px auto;" multi>
-    
-    <mat-expansion-panel (opened)="addOpenPanel(i)" (closed)="removeOpenPanel(i)">
-        <mat-expansion-panel-header collapsedHeight="20vh">
-            <mat-panel-title>
-                <div>
-
-                    <div>
-                        <h3 class="mt-0 font-weight-bold"><button type="button" class="btn btn-outline-primary btn-sm mr-1">edit</button>{{post.title}}</h3>
-                    </div>
-                    <!-- https://stackoverflow.com/questions/536814/insert-ellipsis-into-html-tag-if-content-too-wide -->
-                    <h4 class="text-muted" *ngIf="openedPanel.has(i) == false">{{(post.summary.length > 150) ? (post.summary | slice:0:150) + '...' : post.summary}}</h4>
-                </div>
-            </mat-panel-title>
-            <!-- <mat-panel-description *ngIf="openedPanel.has(i) == false">
-                <div class="media">
-                    <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
-                    <div class="media-body" *ngIf="post.summary">
-                        
-                    </div>
-                </div> 
-
-            </mat-panel-description> -->
-
-
-        </mat-expansion-panel-header>
-
+<ngb-accordion #a="ngbAccordion" (panelChange)="panelStateChange($event)" >
+    <ngb-panel *ngFor="let post of posts; let i = index;">
+      <ng-template ngbPanelHeader>
+        <div class="d-flex justify-content-between">
+            <div class="col-10">
+                <button ngbPanelToggle class="btn btn-light container-fluid text-left"><h2>{{post.title}}</h2></button>
+                <h4 class="text-muted" *ngIf="openedPanel.has(i) == false">{{(post.summary.length > 150) ? (post.summary | slice:0:150) + '...' : post.summary}}</h4>
+            </div>
+          <div>
+            <button class="btn btn-sm btn-outline-primary ml-2">UpVote</button>
+            <button class="btn btn-sm btn-outline-primary ml-2">DownVote</button>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template ngbPanelContent>
         <div class="media">
             <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg"
                 alt="Generic placeholder image"> -->
@@ -35,7 +23,7 @@
             </div>
         </div>
 
-    </mat-expansion-panel>
-
-
-</mat-accordion>
+      </ng-template>
+    </ngb-panel>
+    
+  </ngb-accordion>

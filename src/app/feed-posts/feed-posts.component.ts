@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { PostService } from 'src/app/services/post.service';
+import { NgbPanelChangeEvent, NgbAccordion } from '@ng-bootstrap/ng-bootstrap';
 
 export interface Post {
   author_username?:string,
@@ -26,6 +27,7 @@ export interface PostList {
   styleUrls: ['./feed-posts.component.css']
 })
 export class FeedPostsComponent implements OnInit {
+  @ViewChild('a', {static : true}) accordion: NgbAccordion;
   posts:Post[] = [];
   postsDetail = {};
   openedPanel = new Set()
@@ -64,5 +66,16 @@ export class FeedPostsComponent implements OnInit {
 
   toLocaleDate(date:Date){
     return this.datepipe.transform(date, 'yyyy-MM-dd')
+  }
+
+  panelStateChange(event:NgbPanelChangeEvent){
+    console.log('panel change', event);
+    let post_index = parseInt(event.panelId.charAt(event.panelId.length-1));
+    if(event.nextState==false){
+      this.removeOpenPanel(post_index);
+    }
+    else{
+      this.addOpenPanel(post_index)
+    }
   }
 }

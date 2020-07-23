@@ -22,6 +22,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AuthenticationService } from './services/authentication.service';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { UpdatePostComponent } from './update-post/update-post.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { UpdatePostComponent } from './update-post/update-post.component';
     FormsModule,
     FlashMessagesModule.forRoot(),
     FroalaEditorModule.forRoot(), 
-    FroalaViewModule.forRoot(),
+    FroalaViewModule.forRoot(), NgbModule,
   ],
   providers: [DatePipe, AuthenticationService],
   bootstrap: [AppComponent]
