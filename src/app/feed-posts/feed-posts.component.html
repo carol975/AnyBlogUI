@@ -1,29 +1,33 @@
-<ngb-accordion #a="ngbAccordion" (panelChange)="panelStateChange($event)" >
-    <ngb-panel *ngFor="let post of posts; let i = index;">
-      <ng-template ngbPanelHeader>
-        <div class="d-flex justify-content-between">
-            <div class="col-10">
-                <button ngbPanelToggle class="btn btn-light container-fluid text-left"><h2>{{post.title}}</h2></button>
-                <h4 class="text-muted" *ngIf="openedPanel.has(i) == false">{{(post.summary.length > 150) ? (post.summary | slice:0:150) + '...' : post.summary}}</h4>
-            </div>
-          <div>
-            <button class="btn btn-sm btn-outline-primary ml-2">UpVote</button>
-            <button class="btn btn-sm btn-outline-primary ml-2">DownVote</button>
-          </div>
+<ngb-accordion #a="ngbAccordion" (panelChange)="panelStateChange($event)">
+  <ngb-panel *ngFor="let post of posts; let i = index;">
+    <ng-template ngbPanelHeader>
+      <div class="d-flex justify-content-between">
+        <div class="col-10">
+          <button *ngIf="post.is_curr_user" [routerLink]="['/update', post.post_id]" class="btn btn-sm btn-outline-secondary ml-2">Edit</button>
+          <button ngbPanelToggle class="btn btn-light container-fluid text-left">
+            <h2>{{post.title}}</h2>
+          </button>
+          <h4 class="text-muted" *ngIf="openedPanel.has(i) == false">
+            {{(post.summary.length > 150) ? (post.summary | slice:0:150) + '...' : post.summary}}</h4>
         </div>
-      </ng-template>
-      <ng-template ngbPanelContent>
-        <div class="media">
-            <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg"
+        <div>
+          <button class="btn btn-sm btn-outline-primary ml-2">UpVote</button>
+          <button class="btn btn-sm btn-outline-primary ml-2">DownVote</button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <div class="media">
+        <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg"
                 alt="Generic placeholder image"> -->
-            <div class="media-body">
-                <div>By: @<a href="#">{{post.author_username}}</a> {{toLocaleDate(post.date_posted)}}</div>
-                <br>
-                <div [innerHTML]="post.content"></div>
-            </div>
+        <div class="media-body">
+          <div>By: @<a href="#">{{post.author_username}}</a> {{toLocaleDate(post.date_posted)}}</div>
+          <br>
+          <div [innerHTML]="post.content"></div>
         </div>
+      </div>
 
-      </ng-template>
-    </ngb-panel>
-    
-  </ngb-accordion>
+    </ng-template>
+  </ngb-panel>
+
+</ngb-accordion>

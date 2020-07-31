@@ -1,25 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { PostService } from 'src/app/services/post.service';
+import { PostService, Post, PostList } from 'src/app/services/post.service';
 import { NgbPanelChangeEvent, NgbAccordion } from '@ng-bootstrap/ng-bootstrap';
-
-export interface Post {
-  author_username?:string,
-  author_profile_picture?: string,
-  title: string,
-  date_posted?: Date,
-  content?: string,
-  summary: string,
-  author_user_id?: string,
-  post_id: string,
-  is_curr_author:boolean;
-}
-
-export interface PostList {
-  curr_page: number,
-  total_page: number,
-  items: Post[]
-}
 
 @Component({
   selector: 'app-feed-posts',

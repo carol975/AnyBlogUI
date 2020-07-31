@@ -1,1 +1,9 @@
-<p>update-post works!</p>
+<div class="input-group mb-3 mt-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Title</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Title" aria-label="Title"
+        aria-describedby="basic-addon1" [(ngModel)]="title" maxlength="100">
+</div>
+
+<div #editor [froalaEditor] [(froalaModel)]="content"></div>
