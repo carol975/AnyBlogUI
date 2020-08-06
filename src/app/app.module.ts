@@ -23,6 +23,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserPageComponent } from './user-page/user-page.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CreatePostComponent,
     LoginComponent,
     LogoutComponent,
-    UpdatePostComponent
+    UpdatePostComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,
