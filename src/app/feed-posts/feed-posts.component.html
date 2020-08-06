@@ -21,7 +21,7 @@
         <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg"
                 alt="Generic placeholder image"> -->
         <div class="media-body">
-          <div>By: @<a href="#">{{post.author_username}}</a> {{toLocaleDate(post.date_posted)}}</div>
+          <div>By: @<a href="#" [routerLink]="['/user', post.author_username]">{{post.author_username}}</a> {{toLocaleDate(post.date_posted)}}</div>
           <br>
           <div [innerHTML]="post.content"></div>
         </div>
