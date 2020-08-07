@@ -1,4 +1,4 @@
-<ngb-accordion #a="ngbAccordion" (panelChange)="panelStateChange($event)">
+<ngb-accordion destroyOnHide="True" #a="ngbAccordion"  id="1" (panelChange)="panelStateChange($event)">
   <ngb-panel *ngFor="let post of posts; let i = index;">
     <ng-template ngbPanelHeader>
       <div class="d-flex justify-content-between">

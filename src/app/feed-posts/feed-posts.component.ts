@@ -40,9 +40,6 @@ export class FeedPostsComponent implements OnInit {
     else {
       this.openedPanel.add(index);
     }
-    console.log(this.posts[index]);
-
-
   }
 
   removeOpenPanel(index: number) {
