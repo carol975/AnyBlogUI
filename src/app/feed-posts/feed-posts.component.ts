@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { PostService, Post, PostList } from 'src/app/services/post.service';
 import { NgbPanelChangeEvent, NgbAccordion } from '@ng-bootstrap/ng-bootstrap';
@@ -8,8 +8,8 @@ import { NgbPanelChangeEvent, NgbAccordion } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './feed-posts.component.html',
   styleUrls: ['./feed-posts.component.css']
 })
-export class FeedPostsComponent implements OnInit {
-  @ViewChild('a', { static: true }) accordion: NgbAccordion;
+export class FeedPostsComponent implements OnInit, OnDestroy {
+  @ViewChild('feed_posts_acc', { static: true }) accordion: NgbAccordion;
   posts: Post[] = [];
   postsDetail = {};
   openedPanel = new Set()
@@ -21,6 +21,10 @@ export class FeedPostsComponent implements OnInit {
       console.log(result);
       this.posts = result.items;
     })
+  }
+
+  ngOnDestroy(): void{
+    this.accordion.collapseAll();
   }
 
   addOpenPanel(index: number) {
@@ -52,12 +56,11 @@ export class FeedPostsComponent implements OnInit {
 
   panelStateChange(event: NgbPanelChangeEvent) {
     console.log('panel change', event);
-    let post_index = parseInt(event.panelId.charAt(event.panelId.length - 1));
     if (event.nextState == false) {
-      this.removeOpenPanel(post_index);
+      this.removeOpenPanel(parseInt(event.panelId));
     }
     else {
-      this.addOpenPanel(post_index)
+      this.addOpenPanel(parseInt(event.panelId))
     }
   }
 }

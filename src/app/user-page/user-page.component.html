@@ -10,7 +10,7 @@
     </div>
 
     <ngb-accordion  destroyOnHide="True" id="2" #user_page_acc="ngbAccordion" (panelChange)="panelStateChange($event)">
-        <ngb-panel *ngFor="let post of bloggerInfo.posts.items; let i = index;">
+        <ngb-panel *ngFor="let post of bloggerInfo.posts.items; let i = index;"  [id]="i">
             <ng-template ngbPanelHeader>
                 <div class="d-flex justify-content-between">
                     <div class="col-10">

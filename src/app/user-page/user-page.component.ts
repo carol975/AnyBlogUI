@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { BloggerService, BloggerInfo } from 'src/app/services/blogger.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +10,7 @@ import { PostService, Post } from '../services/post.service';
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.css']
 })
-export class UserPageComponent implements OnInit {
+export class UserPageComponent implements OnInit, OnDestroy {
   @ViewChild('user_page_acc', { static: true }) accordion: NgbAccordion;
 
   bloggerInfo: BloggerInfo;
@@ -32,6 +32,10 @@ export class UserPageComponent implements OnInit {
         console.log(bloggerInfo);
       })
     })
+  }
+
+  ngOnDestroy():void{
+    this.accordion.collapseAll();
   }
 
   addOpenPanel(index: number) {
@@ -66,12 +70,11 @@ export class UserPageComponent implements OnInit {
 
   panelStateChange(event: NgbPanelChangeEvent) {
     console.log('panel change', event);
-    let post_index = parseInt(event.panelId.charAt(event.panelId.length - 1));
     if (event.nextState == false) {
-      this.removeOpenPanel(post_index);
+      this.removeOpenPanel(parseInt(event.panelId));
     }
     else {
-      this.addOpenPanel(post_index)
+      this.addOpenPanel(parseInt(event.panelId))
     }
   }
 
