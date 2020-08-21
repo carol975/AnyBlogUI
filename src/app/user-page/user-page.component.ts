@@ -30,6 +30,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
         this.bloggerInfo = bloggerInfo;
         console.log(this.bloggerInfo.posts.items);
         console.log(bloggerInfo);
+
       })
     })
   }

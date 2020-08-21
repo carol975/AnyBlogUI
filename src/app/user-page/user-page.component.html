@@ -1,14 +1,14 @@
 <div *ngIf="bloggerInfo">
-    <div class="media">
-        <img class="mr-3" src="bloggerInfo.user_info.profile_image" alt="Generic placeholder image">
+    <article class="media content-section my-5 bd-callout bd-callout-info">
+        <img class='rounded-circle article-img'  [src]="'api/'+ bloggerInfo.user_info.profile_image">
         <div class="media-body">
-            <h5 class="mt-0">{{bloggerInfo.user_info.username}}</h5>
-            <ul>
-                <li>{{bloggerInfo.user_info.email}}</li>
-            </ul>
+            <h2><a class="article-title">@{{bloggerInfo.user_info.username}}</a></h2>
+            <p class="article-content">contact:{{bloggerInfo.user_info.email}}</p>
         </div>
-    </div>
-
+    </article>
+    <h2>
+        Articles by this author
+    </h2>
     <ngb-accordion  destroyOnHide="True" id="2" #user_page_acc="ngbAccordion" (panelChange)="panelStateChange($event)">
         <ngb-panel *ngFor="let post of bloggerInfo.posts.items; let i = index;"  [id]="i">
             <ng-template ngbPanelHeader>
