@@ -9,7 +9,8 @@ export const environment = {
   login_api: '/api/login',
   logout_api: '/api/logout',
   isloggedin_api:'/api/isloggedin',
-  blogger_api:'/api/user'
+  blogger_api:'/api/user',
+  signup_api: '/api/register'
 };
 
 /*

@@ -1,0 +1,46 @@
+<div class="container">
+    <flash-messages></flash-messages>
+	<div class="d-flex justify-content-center h-100 mt-5">
+		<div class="card">
+			<div class="card-header">
+				<h3>Sign Up</h3>
+			</div>
+			<div class="card-body">
+				<form (ngSubmit)="onSubmit()"  #signupForm="ngForm" >
+                    <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" required class="form-control"  placeholder="username" name="username" [(ngModel)]="signupInfo.username"> 
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-envelope"></i></span>
+						</div>
+						<input type="text" required class="form-control"  placeholder="email" name="email" [(ngModel)]="signupInfo.email"> 
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" required class="form-control" placeholder="password" name="password" [(ngModel)]="signupInfo.password">
+                    </div>
+                    <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" required class="form-control" placeholder="confirm password" name="confirm_password" [(ngModel)]="signupInfo.confirm_password">
+                    </div>					
+					<button type="submit" [disabled]="!signupForm.form.valid" class="btn float-right signup_btn">Sign Up</button>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Already have an account?<a routerLink="/login">Sign In</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

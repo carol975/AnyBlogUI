@@ -1,59 +1,6 @@
-<!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-sm navbar-dark purple" [containerInside]="false">
-
-  <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/']">AnyBlog</a></mdb-navbar-brand>
-
-  <!-- Collapsible content -->
-  <links>
-
-    <!-- Links -->
-    <ul *ngIf="isLoggedin; else loginShortCut" class="navbar-nav ml-auto">
-    
-        <li class="nav-item">
-          <a *ngIf="currentRoute.includes('new'); else new" class="nav-link waves-light" mdbWavesEffect [routerLink]="['new']" (click)='publish()'><mdb-icon fas icon="envelope"></mdb-icon>Publish</a>
-          <ng-template #new >
-            <a *ngIf="currentRoute.includes('update'); else newShortCut" class="nav-link waves-light" mdbWavesEffect (click)='publish()'><mdb-icon fas icon="envelope"></mdb-icon>Update</a>
-          </ng-template>
-          <ng-template #newShortCut>
-            <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['new']"><mdb-icon fas icon="envelope"></mdb-icon>New Post</a>
-          </ng-template>
-        </li>
-        <!-- Dropdown -->
-        <li class="nav-item dropdown" dropdown>
-          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <mdb-icon fas icon="user"></mdb-icon>Profile<span class="caret"></span></a>
-          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect (click)="logout()">Log out</a>
-          </div>
-        </li>
-    </ul>
-    <ng-template #loginShortCut>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['login']"><mdb-icon fas icon="envelope"></mdb-icon>Log In</a>
-        </li>
-      </ul>
-    </ng-template>
-    <!-- Links -->
-  </links>
-  <!-- Collapsible content -->
-
-</mdb-navbar>
-<!--/.Navbar-->
-
+<app-navbar></app-navbar>
 <div class="container content">
   <router-outlet></router-outlet>
-  <!-- <div class="row">
-    <div class="col-md-9 col-sm-12 card">
-      sdfsdfa;sdlfkj
-    </div>
-    <div class="col-md-3 card">
-      .col-6 .col-md-4
-    </div>
-
-  </div> -->
   
 </div>
 

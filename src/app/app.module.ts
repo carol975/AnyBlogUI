@@ -8,9 +8,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-// For MDB Angular Free
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { NavbarModule, WavesModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md';
 import { HomeComponent } from './home/home.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FeedPostsComponent } from './feed-posts/feed-posts.component';
@@ -24,6 +21,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserPageComponent } from './user-page/user-page.component';
+import { SignupComponent } from './signup/signup.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -35,18 +34,15 @@ import { UserPageComponent } from './user-page/user-page.component';
     LoginComponent,
     LogoutComponent,
     UpdatePostComponent,
-    UserPageComponent
+    UserPageComponent,
+    SignupComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     BrowserAnimationsModule,
-    MDBBootstrapModule.forRoot(),
-    NavbarModule,
-    WavesModule,
-    ButtonsModule,
-    IconsModule,
     MatTabsModule,
     HttpClientModule,
     MatExpansionModule,

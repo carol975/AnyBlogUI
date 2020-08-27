@@ -17,8 +17,7 @@ export interface Post {
 }
 
 export interface PostList {
-  curr_page: number,
-  total_page: number,
+  total_items: number,
   items: Post[]
 }
 
@@ -41,8 +40,15 @@ export class PostService {
   };
   constructor(private http: HttpClient) { }
 
-  get_feed_posts(){
-    return this.http.get(`${environment.home_api}/feed`).pipe(
+  get_feed_posts(page?:number, perPage?:number){
+    let params = {};
+    if(page){
+      params['page'] = page;
+    }
+    if(perPage){
+      params['per_page'] = perPage;
+    }
+    return this.http.get(`${environment.home_api}/feed`, {params:params}).pipe(
       retry(2),
       catchError(this.handleError)
     )

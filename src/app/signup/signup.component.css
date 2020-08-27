@@ -2,8 +2,9 @@
 
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
+
 .card{
-height: 370px;
+height: 420px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
@@ -44,26 +45,13 @@ box-shadow: 0 0 0 0 !important;
 
 }
 
-.remember{
-color: white;
-}
-
-
-.remember input
-{
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
-}
-
-.login_btn{
+.signup_btn{
 color: white;
 background-color: #a533a5;
 width: 100px;
 }
 
-.login_btn:hover{
+.signup_btn:hover{
 color: black;
 background-color: white;
 }

@@ -13,6 +13,12 @@ export class FeedPostsComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
   postsDetail = {};
   openedPanel = new Set()
+  
+  page = 1;
+  pageSize = 5;
+  collectionSize = 0;
+  maxSize = 4;
+  
   constructor(private _postService: PostService,
     private datepipe: DatePipe) { }
 
@@ -20,6 +26,8 @@ export class FeedPostsComponent implements OnInit, OnDestroy {
     this._postService.get_feed_posts().subscribe((result: PostList) => {
       console.log(result);
       this.posts = result.items;
+      this.collectionSize = result.total_items;
+
     })
   }
 
@@ -62,5 +70,14 @@ export class FeedPostsComponent implements OnInit, OnDestroy {
     else {
       this.addOpenPanel(parseInt(event.panelId))
     }
+  }
+
+  updatePosts(){
+    console.log(this.page, this.collectionSize);
+    this._postService.get_feed_posts(this.page, this.pageSize).subscribe((result: PostList) => {
+      console.log(result);
+      this.posts = result.items;
+      this.openedPanel = new Set();
+    })
   }
 }
