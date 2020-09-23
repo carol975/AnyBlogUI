@@ -4,6 +4,24 @@ import { environment } from 'src/environments/environment';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, retry } from 'rxjs/operators';
 
+export interface Post {
+  author_username?:string,
+  author_profile_picture?: string,
+  title: string,
+  date_posted?: Date,
+  content?: string,
+  summary: string,
+  author_user_id?: string,
+  post_id: string,
+  is_curr_author:boolean;
+}
+
+export interface PostList {
+  total_items: number,
+  items: Post[]
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,8 +40,15 @@ export class PostService {
   };
   constructor(private http: HttpClient) { }
 
-  get_feed_posts(){
-    return this.http.get(`${environment.home_api}/feed`).pipe(
+  get_feed_posts(page?:number, perPage?:number){
+    let params = {};
+    if(page){
+      params['page'] = page;
+    }
+    if(perPage){
+      params['per_page'] = perPage;
+    }
+    return this.http.get(`${environment.home_api}/feed`, {params:params}).pipe(
       retry(2),
       catchError(this.handleError)
     )
@@ -35,5 +60,14 @@ export class PostService {
       retry(2),
       catchError(this.handleError)
     )
+  }
+
+  publish_post(title:string, content: string){
+    return this.http.post(`${environment.post_api}/new`, {'title': title, 'content':content},{observe: 'response', withCredentials:true});
+
+  }
+
+  update_post(title:string, content:string, postID:string){
+    return this.http.post(`${environment.post_api}/${postID}/update`,{'title': title, 'content':content},{observe: 'response', withCredentials:true} )
   }
 }

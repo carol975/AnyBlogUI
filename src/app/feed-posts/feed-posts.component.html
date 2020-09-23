@@ -1,38 +1,34 @@
-<mat-accordion *ngFor="let post of posts; let i = index;" borderColor="border-secondary" style="margin:1px auto;" multi>
-    <mat-expansion-panel (opened)="addOpenPanel(i)" (closed)="removeOpenPanel(i)">
-        <mat-expansion-panel-header collapsedHeight="20vh">
-            <mat-panel-title>
-                <div>
-
-                    <h3 class="mt-0 font-weight-bold">{{post.title}}</h3>
-                    <!-- https://stackoverflow.com/questions/536814/insert-ellipsis-into-html-tag-if-content-too-wide -->
-                    <h4 class="text-muted" *ngIf="openedPanel.has(i) == false && post.summary">{{(post.summary.length > 100) ? (post.summary | slice:0:100) + '...' : post.summary}}</h4>
-                </div>
-            </mat-panel-title>
-            <!-- <mat-panel-description *ngIf="openedPanel.has(i) == false">
-                <div class="media">
-                    <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
-                    <div class="media-body" *ngIf="post.summary">
-                        
-                    </div>
-                </div>
-
-            </mat-panel-description> -->
-
-
-        </mat-expansion-panel-header>
-
-        <div class="media">
-            <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg"
-                alt="Generic placeholder image"> -->
-            <div class="media-body">
-                <div>By: @<a href="#">{{post.author_username}}</a> {{toLocaleDate(post.date_posted)}}</div>
-                <br>
-                {{post.content}}
-            </div>
+<ngb-accordion destroyOnHide="True" #feed_posts_acc="ngbAccordion"  id="1" (panelChange)="panelStateChange($event)">
+  <ngb-panel *ngFor="let post of posts; let i = index;" [id]="i">
+    <ng-template ngbPanelHeader>
+      <div class="d-flex justify-content-between">
+        <div class="col-10">
+          <button *ngIf="post.is_curr_user" [routerLink]="['/update', post.post_id]" class="btn btn-sm btn-outline-secondary ml-2">Edit</button>
+          <button ngbPanelToggle class="btn btn-light container-fluid text-left">
+            <h2>{{post.title}}</h2>
+          </button>
+          <h4 class="text-muted" *ngIf="openedPanel.has(i) == false">
+            {{(post.summary.length > 150) ? (post.summary | slice:0:150) + '...' : post.summary}}</h4>
         </div>
+        <div>
+          <button class="btn btn-sm btn-outline-primary ml-2">UpVote</button>
+          <button class="btn btn-sm btn-outline-primary ml-2">DownVote</button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <div class="media">
+        <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg"
+                alt="Generic placeholder image"> -->
+        <div class="media-body">
+          <div>By: @<a href="#" [routerLink]="['/user', post.author_username]">{{post.author_username}}</a> {{toLocaleDate(post.date_posted)}}</div>
+          <br>
+          <div [innerHTML]="post.content"></div>
+        </div>
+      </div>
 
-    </mat-expansion-panel>
+    </ng-template>
+  </ngb-panel>
 
-
-</mat-accordion>
+</ngb-accordion>
+<ngb-pagination class="d-flex justify-content-end" (pageChange)="updatePosts()" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" [rotate]="true" [maxSize]="maxSize" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>

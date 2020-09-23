@@ -4,8 +4,13 @@
 
 export const environment = {
   production: false,
-  home_api: 'http://localhost:5000/home',
-  post_api: 'http://localhost:5000/post'
+  home_api: '/api/home',
+  post_api: '/api/post',
+  login_api: '/api/login',
+  logout_api: '/api/logout',
+  isloggedin_api:'/api/isloggedin',
+  blogger_api:'/api/user',
+  signup_api: '/api/register'
 };
 
 /*

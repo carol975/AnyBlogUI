@@ -1,0 +1,48 @@
+<div *ngIf="bloggerInfo">
+    <article class="media content-section my-5 bd-callout bd-callout-info">
+        <img class='rounded-circle article-img'  [src]="'api/'+ bloggerInfo.user_info.profile_image">
+        <div class="media-body">
+            <h2><a class="article-title">@{{bloggerInfo.user_info.username}}</a></h2>
+            <p class="article-content">contact:{{bloggerInfo.user_info.email}}</p>
+        </div>
+    </article>
+    <h2>
+        Articles by this author
+    </h2>
+    <ngb-accordion  destroyOnHide="True" id="2" #user_page_acc="ngbAccordion" (panelChange)="panelStateChange($event)">
+        <ngb-panel *ngFor="let post of bloggerInfo.posts.items; let i = index;"  [id]="i">
+            <ng-template ngbPanelHeader>
+                <div class="d-flex justify-content-between">
+                    <div class="col-10">
+                        <button *ngIf="post.is_curr_user" [routerLink]="['/update', post.post_id]"
+                            class="btn btn-sm btn-outline-secondary ml-2">Edit</button>
+                        <button ngbPanelToggle class="btn btn-light container-fluid text-left">
+                            <h2>{{post.title}}</h2>
+                        </button>
+                        <h4 class="text-muted" *ngIf="openedPanel.has(i) == false">
+                            {{(post.summary.length > 150) ? (post.summary | slice:0:150) + '...' : post.summary}}</h4>
+                    </div>
+                    <div>
+                        <button class="btn btn-sm btn-outline-primary ml-2">UpVote</button>
+                        <button class="btn btn-sm btn-outline-primary ml-2">DownVote</button>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="media">
+                    <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg"
+                    alt="Generic placeholder image"> -->
+                    <div class="media-body">
+                        <div>By: @<a href="#"
+                                [routerLink]="['/user', post.author_username]">{{post.author_username}}</a>
+                            {{toLocaleDate(post.date_posted)}}</div>
+                        <br>
+                        <div [innerHTML]="post.content"></div>
+                    </div>
+                </div>
+
+            </ng-template>
+        </ngb-panel>
+
+    </ngb-accordion>
+</div>
